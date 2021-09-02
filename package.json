@@ -1,0 +1,13 @@
+{
+    "name": "app",
+    "private": true,
+    "version": "1.4.0",
+    "dependencies": {
+        "express": "~4.17.1",
+        "express-handlebars": "~5.3.3",
+        "node-fetch": "~2.6.1"
+    },
+    "scripts": {
+        "start": "node src/main.js"
+    }
+}
