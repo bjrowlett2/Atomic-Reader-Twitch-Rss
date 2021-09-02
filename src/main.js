@@ -107,15 +107,22 @@ App.get('/api/v1/:login', async (request, response) => {
 
         GetUsers(login, userId => {
             GetVideos(userId, videos => {
+                const thumbnailWidth = 640;
+                const thumbnailHeight = 360;
+
                 const context = {
                     title: login,
                     description: `${login}'s Twitch feed`,
                     link: `https://atomic-reader-rss.herokuapp.com/api/v1/${login}`,
                     items: videos.data.map(item => {
                         let thumbnail_url = item.thumbnail_url;
-                        thumbnail_url = thumbnail_url.replace('%{width}', '640');
-                        thumbnail_url = thumbnail_url.replace('%{height}', '360');
-        
+                        thumbnail_url = thumbnail_url.replace('%{width}', `${thumbnailWidth}`);
+                        thumbnail_url = thumbnail_url.replace('%{height}', `${thumbnailHeight}`);
+
+                        if (!thumbnail_url) {
+                            thumbnail_url = `https://vod-secure.twitch.tv/_404/404_processing_${thumbnailWidth}x${thumbnailHeight}.png`;
+                        }
+
                         return {
                             guid: item.id,
                             title: item.title,

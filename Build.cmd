@@ -1,6 +1,6 @@
 @ECHO OFF
 
-SET VERSION=1.4
+SET VERSION=1.5
 
 docker build -t dkr.atomic-reader.com/atomic-reader-rss:%VERSION% .
 
