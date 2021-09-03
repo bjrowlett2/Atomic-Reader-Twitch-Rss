@@ -9,6 +9,8 @@ App.engine('handlebars', ExpressHandlebars());
 App.set('views', '/app/src/views');
 App.set('view engine', 'handlebars');
 
+App.use('/favicon.ico', Express.static('/app/favicon.ico'));
+
 let AccessTokenValue = '';
 let AccessTokenExpiresAt = Date.now();
 
@@ -98,7 +100,11 @@ function GetVideos(userId, callback) {
         .catch(reason => console.error(reason));
 }
 
-App.get('/api/v1/:login', async (request, response) => {
+App.get('/', (request, response) => {
+    response.render('static');
+});
+
+App.get('/api/v1/:login', (request, response) => {
     const login = request.params['login'];
 
     GetAccessToken((accessToken, expiresIn) => {
