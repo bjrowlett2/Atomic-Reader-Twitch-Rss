@@ -119,7 +119,7 @@ App.get('/api/v1/:login', (request, response) => {
                 const context = {
                     title: login,
                     description: `${login}'s Twitch feed`,
-                    link: `https://atomic-reader-rss.herokuapp.com/api/v1/${login}`,
+                    link: `https://app.atomic-reader.com/twitch-rss/api/v1/${login}`,
                     items: videos.data.map(item => {
                         let thumbnail_url = item.thumbnail_url;
                         thumbnail_url = thumbnail_url.replace('%{width}', `${thumbnailWidth}`);
